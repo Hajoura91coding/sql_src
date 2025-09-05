@@ -1,0 +1,4 @@
+duckdb==1.3.2
+fastapi==0.116.1
+streamlit==1.49.1
+pandas
