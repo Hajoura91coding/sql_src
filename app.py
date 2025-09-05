@@ -20,10 +20,6 @@ muffin,3
 '''
 food_items = pd.read_csv(io.StringIO(csv2))
 
-answer = """
-SELECT * FROM beverages
-"""
-solution = duckdb.sql(answer).df()
 
 with st.sidebar:
     options = st.selectbox(
@@ -33,11 +29,17 @@ with st.sidebar:
         placeholder = "Select a theme ...",
     )
     st.write('you selected:', options)
+answer = """ 
+SELECT * FROM beverages
+CROSS JOIN food_items
+"""
+solution = duckdb.sql(answer).df()
 
 
 
 st.header("Entrez votre code:")
 query = st.text_input(label="Votre code SQL ici", key="user_input")
+
 
 if query:
     result = duckdb.sql(query).df()
