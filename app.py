@@ -1,5 +1,4 @@
-
-#pylint: disable=missing-module-docstring
+# pylint: disable=missing-module-docstring
 import duckdb
 import streamlit as st
 
@@ -16,8 +15,6 @@ with st.sidebar:
 
     exercise = con.execute(f"SELECT * FROM memory_state WHERE theme = '{theme}'").df()
     st.write(exercise)
-
-
 
 
 st.header("Entrez votre code:")
@@ -48,4 +45,3 @@ query = st.text_input(label="Votre code SQL ici", key="user_input")
 #
 # with tab3:
 #     st.write(ANSWER_STR)
-
