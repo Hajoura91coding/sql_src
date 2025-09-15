@@ -33,7 +33,7 @@ if query:
 try:
     result = result[solution_df.columns]
     st.dataframe(result.compare(solution_df))
-except KeyError as e: \
+except KeyError as e:
     (st.write("Some columns are missing"))
 n_lines_difference = result.shape[0] - solution_df.shape[0]
 if n_lines_difference != 0:
