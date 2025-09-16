@@ -3,6 +3,7 @@ import os
 import logging
 import duckdb
 import streamlit as st
+from datetime import date, timedelta
 
 if "data" not in os.listdir():
     logging.debug(os.listdir())
@@ -44,7 +45,6 @@ def selects_exercises():
         select_exercises = f"SELECT * FROM memory_state WHERE theme = '{theme}'"
     else:
         select_exercises = f"SELECT * FROM memory_state"
-
     exercise = (
         con.execute(select_exercises)
         .df()
@@ -52,6 +52,12 @@ def selects_exercises():
         .reset_index(drop=True)
     )
     st.write(exercise)
+    return exercise
+
+con = duckdb.connect(database="data/exercices_sql_tables.duckdb", read_only=False)
+
+with st.sidebar:
+    exercise = selects_exercises()
 
     exercise_name = exercise.loc[0, "exercise_name"]
     with open(f"answers/{exercise_name}.sql", "r") as f:
