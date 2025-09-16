@@ -22,7 +22,11 @@ with st.sidebar:
         index=None,
         placeholder="Select a theme ...",
     )
-    st.write("you selected:", theme)
+    if theme:
+        st.write("you selected:", theme)
+        select_exercises = f"SELECT * FROM memory_state WHERE theme = '{theme}'"
+    else:
+        select_exercises = f"SELECT * FROM memory_state"
 
     exercise = (
         con.execute(select_exercises)
