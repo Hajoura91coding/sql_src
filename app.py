@@ -12,9 +12,26 @@ if "exercises_sql_tables_duckdb" not in os.listdir("data"):
     exec(open("init_db.py").read())
     # subprocess, run(["python",'init_db.py"])
 
-con = duckdb.connect(database="data/exercices_sql_tables.duckdb", read_only=False)
+def check_users_solution(query_users: str) -> None:
+    """
+    Checks that user SQL is correct by:
+    1)checking the columns
+    2) checking the values
+    :param query_users:a string containing the query inserted by the user
+    """
+    result = con.execute(query_users).df()
+    st.dataframe(result)
+    try:
+        result = result[solution_df.columns]
+        st.dataframe(result.compare(solution_df))
+    except KeyError as e:
+        (st.write("Some columns are missing"))
+    n_lines_difference = result.shape[0] - solution_df.shape[0]
+    if n_lines_difference != 0:
+        st.write(f"{n_lines_difference} lines difference with the solution_df")
 
-with st.sidebar:
+
+def selects_exercises():
     available_theme_df = con.execute("SELECT DISTINCT theme FROM memory_state").df()
     theme = st.selectbox(
         "What would you like to review?",
