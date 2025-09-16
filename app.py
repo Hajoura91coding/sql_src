@@ -1,20 +1,35 @@
 # pylint: disable=missing-module-docstring
+import os
+import logging
 import duckdb
 import streamlit as st
+
+if "data" not in os.listdir():
+    logging.debug(os.listdir())
+    logging.debug("creating folder data")
+    os.mkdir("data")
+if "exercises_sql_tables_duckdb" not in os.listdir("data"):
+    exec(open("init_db.py").read())
+    # subprocess, run(["python",'init_db.py"])
 
 con = duckdb.connect(database="data/exercices_sql_tables.duckdb", read_only=False)
 
 with st.sidebar:
+    available_theme_df = con.execute("SELECT DISTINCT theme FROM memory_state").df()
     theme = st.selectbox(
         "What would you like to review?",
-        ["cross_joins", "GroupBy", "window_functions"],
+        available_theme_df["theme"].unique(),
         index=None,
         placeholder="Select a theme ...",
     )
-    st.write("you selected:", theme)
+    if theme:
+        st.write("you selected:", theme)
+        select_exercises = f"SELECT * FROM memory_state WHERE theme = '{theme}'"
+    else:
+        select_exercises = f"SELECT * FROM memory_state"
 
     exercise = (
-        con.execute(f"SELECT * FROM memory_state WHERE theme = '{theme}'")
+        con.execute(select_exercises)
         .df()
         .sort_values(by=["last_reviews"])
         .reset_index(drop=True)
