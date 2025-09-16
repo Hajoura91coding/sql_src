@@ -25,7 +25,7 @@ with st.sidebar:
     st.write("you selected:", theme)
 
     exercise = (
-        con.execute(f"SELECT * FROM memory_state WHERE theme = '{theme}'")
+        con.execute(select_exercises)
         .df()
         .sort_values(by=["last_reviews"])
         .reset_index(drop=True)
