@@ -65,21 +65,19 @@ with st.sidebar:
     solution_df = con.execute(answer).df()
 
 st.header("Entrez votre code:")
-query = st.text_input(label="Votre code SQL ici", key="user_input")
+query = st.text_area(label="Votre code SQL ici", key="user_input")
 
 if query:
-    result = con.execute(query).df()
-    st.dataframe(result)
+    check_users_solution(query)
 
-    try:
-        result = result[solution_df.columns]
-        st.dataframe(result.compare(solution_df))
-    except KeyError as e:
-        (st.write("Some columns are missing"))
-    n_lines_difference = result.shape[0] - solution_df.shape[0]
-    if n_lines_difference != 0:
-        st.write(f"{n_lines_difference} lines difference with the solution_df")
-
+for n_days in [2, 7, 21]:
+    if st.button(f'revoir dans {n_days} jours'):
+        next_review = date.today() + timedelta(days=n_days)
+        con.execute(f"UPDATE memory_state SET last_reviews = '{next_review}' WHERE exercise_name = '{exercise_name}'")
+        st.rerun()
+if st.button('Reset'):
+    con.execute(f"UPDATE memory_state SET last_reviews = '1970-01-01'")
+    st.rerun()
 
 tab2, tab3 = st.tabs(["Tables", "Solution"])
 
