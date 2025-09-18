@@ -33,7 +33,9 @@ def check_users_solution(query_users: str) -> None:
         st.write(f"{n_lines_difference} lines difference with the solution_df")
 
 
-def selects_exercises():
+con = duckdb.connect(database="data/exercices_sql_tables.duckdb", read_only=False)
+
+with st.sidebar:
     available_theme_df = con.execute("SELECT DISTINCT theme FROM memory_state").df()
     theme = st.selectbox(
         "What would you like to review?",
@@ -53,44 +55,47 @@ def selects_exercises():
         .reset_index(drop=True)
     )
     st.write(exercise)
-    return exercise
-
-
-con = duckdb.connect(database="data/exercices_sql_tables.duckdb", read_only=False)
-
-with st.sidebar:
-    exercise = selects_exercises()
 
     exercise_name = exercise.loc[0, "exercise_name"]
     with open(f"answers/{exercise_name}.sql", "r") as f:
         answer = f.read()
     solution_df = con.execute(answer).df()
 
-st.header("Entrez votre code:")
-query = st.text_area(label="Votre code SQL ici", key="user_input")
+    tab2, tab3 = st.tabs(["Tables", "Solution"])
 
-if query:
-    check_users_solution(query)
+    with tab2:
+        exercise_tables = exercise.loc[0, "tables"]
+        for table in exercise_tables:
+            st.write(f"table: {table}")
+            df_table = con.execute(f"SELECT * FROM {table}").df()
+            st.dataframe(df_table)
 
-for n_days in [2, 7, 21]:
-    if st.button(f"revoir dans {n_days} jours"):
-        next_review = date.today() + timedelta(days=n_days)
-        con.execute(
-            f"UPDATE memory_state SET last_reviews = '{next_review}' WHERE exercise_name = '{exercise_name}'"
-        )
+    with tab3:
+        st.write(answer)
+
+if theme:
+    with open(f"guidelines/{theme}", "r") as f:
+        guidelines = f.read()
+    st.write(guidelines)
+
+    st.header("Entrez votre code:")
+    query = st.text_area(label="Votre code SQL ici", key="user_input")
+
+    if query:
+        check_users_solution(query)
+
+    for n_days in [2, 7, 21]:
+        if st.button(f"revoir dans {n_days} jours"):
+            next_review = date.today() + timedelta(days=n_days)
+            con.execute(
+                f"UPDATE memory_state SET last_reviews = '{next_review}' WHERE exercise_name = '{exercise_name}'"
+            )
+            st.rerun()
+    if st.button("Reset"):
+        con.execute(f"UPDATE memory_state SET last_reviews = '1970-01-01'")
         st.rerun()
-if st.button("Reset"):
-    con.execute(f"UPDATE memory_state SET last_reviews = '1970-01-01'")
-    st.rerun()
-
-tab2, tab3 = st.tabs(["Tables", "Solution"])
-
-with tab2:
-    exercise_tables = exercise.loc[0, "tables"]
-    for table in exercise_tables:
-        st.write(f"table: {table}")
-        df_table = con.execute(f"SELECT * FROM {table}").df()
-        st.dataframe(df_table)
-
-with tab3:
-    st.write(answer)
+else:
+    st.title("Bienvenue sur la plateforme d'apprentissage de SQL")
+    with open(f"guidelines/main_guidelines", "r") as f:
+        main_pages = f.read()
+    st.write(main_pages)
