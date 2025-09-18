@@ -32,6 +32,7 @@ def check_users_solution(query_users: str) -> None:
     if n_lines_difference != 0:
         st.write(f"{n_lines_difference} lines difference with the solution_df")
 
+
 con = duckdb.connect(database="data/exercices_sql_tables.duckdb", read_only=False)
 
 with st.sidebar:
@@ -98,5 +99,3 @@ else:
     with open(f"guidelines/main_guidelines", "r") as f:
         main_pages = f.read()
     st.write(main_pages)
-
-
