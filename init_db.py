@@ -13,10 +13,15 @@ con = duckdb.connect(database="data/exercices_sql_tables.duckdb", read_only=Fals
 # EXERCISES LIST
 # ---------------------------------
 data = {
-    "theme": ["cross_joins", "cross_joins", "case when"],
-    "exercise_name": ["beverages_and_food", "sizes_and_trademarks", "wages"],
-    "tables": [["beverages", "food_items"], ["sizes", "trademarks"], ["wages"]],
-    "last_reviews": ["01/09/2025", "02/09/2025", "03/09/2025"],
+    "theme": ["cross_joins", "cross_joins", "case when", "group by"],
+    "exercise_name": ["beverages_and_food", "sizes_and_trademarks", "wages", "sales"],
+    "tables": [
+        ["beverages", "food_items"],
+        ["sizes", "trademarks"],
+        ["wages"],
+        ["sales"],
+    ],
+    "last_reviews": ["01/09/2025", "02/09/2025", "03/09/2025", "22/09/2025s"],
 }
 memory_state_df = pd.DataFrame(data)
 con.execute("CREATE TABLE IF NOT EXISTS memory_state AS SELECT * FROM memory_state_df")
@@ -120,3 +125,13 @@ data = {
 
 wages = pd.DataFrame(data)
 con.execute("CREATE TABLE IF NOT EXISTS wages AS SELECT * FROM wages")
+
+
+clients = ["Oussama", "Julie", "Chris", "Tom"]
+ventes = [120, 49, 35, 23, 19, 5.99, 20, 18.77, 39, 10, 17, 12]
+
+sales = pd.DataFrame(ventes)
+sales.columns = ["montant"]
+sales["client"] = clients * 3
+
+con.execute("CREATE TABLE IF NOT EXISTS sales AS SELECT * FROM sales")

@@ -1,0 +1,89 @@
+---
+
+# 📌 Fiche pratique – GROUP BY
+
+## 🔹 Définition
+
+`GROUP BY` permet de **regrouper les lignes** d’une table selon une ou plusieurs colonnes, pour ensuite appliquer des **fonctions d’agrégation** (`COUNT`, `SUM`, `AVG`, `MIN`, `MAX`…).
+👉 C’est l’équivalent d’un **groupby en pandas**.
+
+---
+
+## 🔹 Syntaxe SQL
+
+```sql
+SELECT colonne1, fonction_agregat(colonne2)
+FROM table
+GROUP BY colonne1;
+```
+
+---
+
+## 🔹 Exemple SQL
+
+Table `ventes` : `(client, montant)`
+
+```sql
+SELECT client, SUM(montant) AS total_achats
+FROM ventes
+GROUP BY client;
+```
+
+📊 Résultat : un total des achats par client.
+
+⚠️ Si on utilise `GROUP BY`, **toutes les colonnes du SELECT** doivent être :
+
+* soit dans le `GROUP BY`
+* soit utilisées dans une fonction d’agrégation.
+
+---
+
+## 🔹 Clause HAVING
+
+`HAVING` filtre **après** l’agrégation (contrairement à `WHERE`, qui filtre avant).
+
+```sql
+SELECT client, SUM(montant) AS total_achats
+FROM ventes
+GROUP BY client
+HAVING SUM(montant) > 500;
+```
+
+---
+
+## 🔹 Équivalent en Python (pandas)
+
+```python
+import pandas as pd
+
+ventes = pd.DataFrame({
+    "client": ["Alice", "Bob", "Alice", "Chloé", "Bob"],
+    "montant": [100, 50, 200, 300, 150]
+})
+
+# Group by client et somme des montants
+resultat = ventes.groupby("client")["montant"].sum().reset_index()
+
+print(resultat)
+```
+
+📊 Résultat : même logique que SQL → total des achats par client.
+
+---
+
+✅ **À retenir** :
+
+* `GROUP BY` = regroupe les données.
+* Toujours avec une fonction d’agrégation.
+* `HAVING` = filtre après regroupement.
+* En Python → `groupby()` de pandas.
+
+---
+
+**EXERCICES**
+
+Imaginons qu'on ait une table de ventes avec le montant dépensé par chaque client pour chaque opération:
+On aimerait savoir qui est notre plus gros client, pour lui envoyer un cadeau.
+<br />
+
+Pour cela, il nous faut, pour chaque client, la somme de ses dépenses
