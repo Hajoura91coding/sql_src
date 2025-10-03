@@ -5,6 +5,10 @@
 
 Une application **Streamlit** pour pratiquer et réviser le SQL de manière interactive, avec correction automatique et gestion des révisions espacées.
 
+Mais qu'est-ce que la répétition espacée ?
+
+La répétition espacée est une technique d'apprentissage qui consiste à se faire interroger (ou s'auto-interroger) d'autant moins souvent qu'on maîtrise la question. 
+
 ## 🚀 Fonctionnalités
 
 * Interface simple et intuitive avec **Streamlit**.
@@ -14,6 +18,7 @@ Une application **Streamlit** pour pratiquer et réviser le SQL de manière inte
 
   * Comparaison des colonnes et des résultats avec la solution attendue.
   * Signalement des différences de lignes ou colonnes.
+  * Possibilité de demander un indice
 * Système de **révisions planifiées** (2, 7 ou 21 jours) pour renforcer la mémoire.
 * Stockage et gestion des données via **DuckDB**.
 

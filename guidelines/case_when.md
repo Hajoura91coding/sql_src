@@ -1,0 +1,6 @@
+### EXERCICE: wages
+
+### Consigne:
+
+
+
