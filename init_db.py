@@ -16,10 +16,9 @@ data = {
     "theme": [
         "cross_joins",
         "cross_joins",
+        "cross_joins",       # ← Virgule ajoutée
         "case_when",
         "case_when",
-        "group_by",
-        "group_by",
         "group_by",
         "group_by",
         "inner_joins",
@@ -29,11 +28,10 @@ data = {
     "exercise_name": [
         "beverages_and_food",
         "sizes_and_trademarks",
-        "wages",
         "hours_quarters",
+        "wages",
+        "orders",            # ← Virgule ajoutée
         "sales",
-        "salaries_seniorities",
-        "weights_turnover_retail",
         "weights_turnover_retail",
         "product_client_order1",
         "product_client_order2",
@@ -42,15 +40,14 @@ data = {
     "tables": [
         ["beverages", "food_items"],
         ["sizes", "trademarks"],
-        ["wages"],
-        ["hours", "quarters"],
+        ["hours", "quarters"],           # ← Vérifiez : est-ce bien pour "hours_quarters" ?
+        ["wages"],                       # ← Vérifiez : est-ce bien pour "wages" ?
+        ["orders"],                      # ← Vérifiez : est-ce bien pour "orders" ?
         ["sales"],
-        ["salaries", "seniorities"],
-        ["weights", "turnover", "retail"],
         ["weights_turnover_retail"],
-        ["products", "clients", "orders"],
-        ["products", "clients", "orders"],
-        ["products", "clients", "orders"]
+        ["df_products", "df_customers", "df_orders"],
+        ["df_products", "df_customers", "df_orders"],
+        ["df_products", "df_customers", "df_orders"]
     ],
     "last_reviews": [
         "01/09/2025",
@@ -62,11 +59,14 @@ data = {
         "24/09/2025",
         "25/09/2025",
         "26/09/2025",
-        "27/09/2025",
         "28/09/2025"
     ],
 }
 memory_state_df = pd.DataFrame(data)
+import pandas as pd
+
+df = pd.DataFrame(data)
+print(df[["theme", "exercise_name", "tables"]])
 
 con.execute("CREATE TABLE IF NOT EXISTS memory_state AS SELECT * FROM memory_state_df")
 # CROSS JOIN EXERCICES
@@ -259,4 +259,15 @@ order_details_data = {
 df_order_details = pd.DataFrame(order_details_data)
 con.execute("CREATE TABLE IF NOT EXISTS df_order_details AS SELECT * FROM df_order_details")
 
+weights_turnover_retail = pd.read_csv("data/weights_turnover_retail.csv")
+con.execute("CREATE TABLE IF NOT EXISTS weights_turnover_retail AS SELECT * FROM weights_turnover_retail")
 
+data = {
+    'order_id': [1, 2, 3, 4, 5],
+    'order_date': ['2023-01-15', '2023-02-20', '2023-03-05', '2023-04-10', '2023-05-18'],
+    'order_amount': [120, 450, 800, 60, 1500]
+}
+
+# Create a Pandas DataFrame
+orders = pd.DataFrame(data)
+con.execute("CREATE TABLE IF NOT EXISTS orders AS SELECT * FROM orders")

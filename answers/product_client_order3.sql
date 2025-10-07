@@ -1,3 +1,3 @@
 SELECT * FROM df_customers
-INNER JOIN detailed_order
+INNER JOIN df_order_details
 USING (customer_id)

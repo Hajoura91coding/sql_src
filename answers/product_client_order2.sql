@@ -4,5 +4,5 @@ order_id,
 product_id,
 quantity
 FROM df_customers
-INNER JOIN detailed_order
-on df_customers.customer_id = detailed_order.customer_id
+INNER JOIN df_order_details
+on df_customers.customer_id = df_order_details.customer_id
