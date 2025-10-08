@@ -53,7 +53,7 @@ def parse_exercise_from_md(filepath: str) -> list:
 
             for line in lines[1:]:  # Commencer après le nom
                 # Détecter le début de la consigne
-                if line.startswith("#### Consigne") or line.startswith("##### Consigne"):
+                if line.startswith("#### Consigne") :
                     in_consigne = True
                     continue  # Sauter la ligne "#### Consigne:"
 
@@ -152,7 +152,7 @@ with st.sidebar:
     if current_theme:
         st.write("You selected:", current_theme)
 
-        # ✅ Parser UNE SEULE FOIS et stocker dans session_state
+        #  Parser une fois et stocker dans session_state
         if 'available_exercises' not in st.session_state or st.session_state.get('current_theme') != current_theme:
             st.session_state.available_exercises = parse_exercise_from_md(f"guidelines/{current_theme}.md")
             st.session_state.current_theme = current_theme
@@ -224,10 +224,10 @@ with st.sidebar:
 if current_theme and 'selected_exercise_name' in st.session_state:
     exercise_name = st.session_state.selected_exercise_name
 
-    # ✅ Réutiliser les exercices déjà parsés (pas de re-parsing !)
+    # Réutiliser les exercices déjà parsés (pas de re-parsing !)
     available_exercises = st.session_state.available_exercises
 
-    # ✅ Utiliser next() au lieu de [0]
+    # Utiliser next() au lieu de [0]
     current_exercise = next(
         (ex for ex in available_exercises if ex['name'] == exercise_name),
         None
@@ -237,7 +237,7 @@ if current_theme and 'selected_exercise_name' in st.session_state:
         st.header(f"Exercice: {exercise_name}")
         st.info(current_exercise['consigne'])
     else:
-        st.error(f"❌ Exercice '{exercise_name}' non trouvé")
+        st.error(f"Exercice '{exercise_name}' non trouvé")
 
     # Formulaire pour la requête SQL
     st.header("Entrez votre code pour résoudre l'exercice:")

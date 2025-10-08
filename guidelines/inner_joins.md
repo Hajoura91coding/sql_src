@@ -10,3 +10,9 @@ Effectuez une jointure interne entre la table des clients (df_customers) et une 
 #### Consigne :
 Effectuez une jointure interne (INNER JOIN) entre la table "order_client" (avec l'alias "cc") et la table "df_products" (avec l'alias "products") en utilisant l'identifiant de produit (product_id) comme colonne commune.
 
+### EXERCICE: seniorities_salaries_inner
+#### Consigne:
+Exercice : Récupérez le salaire et 
+        l'ancienneté de chaque employé en joignant les tables 
+        salaries et seniorities sur l'identifiant de l'employé.
+

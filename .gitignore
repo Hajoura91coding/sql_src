@@ -3,3 +3,5 @@
 data/
 *.csv
 test_db.py
+add_exercises.py
+admin_exercises.py

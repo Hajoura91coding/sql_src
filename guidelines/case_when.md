@@ -15,3 +15,6 @@ Ajoute une nouvelle colonne appelée order_category qui catégorise chaque comma
 * 'Medium' : pour les commandes dont le montant est entre 200€ (inclus) et 800€ (exclus)
 * 'Large' : pour les commandes dont le montant est supérieur ou égal à 800€
 
+
+
+

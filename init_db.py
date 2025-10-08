@@ -16,57 +16,62 @@ data = {
     "theme": [
         "cross_joins",
         "cross_joins",
-        "cross_joins",       # ← Virgule ajoutée
+        "cross_joins",
+        "cross_joins",
         "case_when",
         "case_when",
         "group_by",
         "group_by",
         "inner_joins",
         "inner_joins",
-        "inner_joins"
+        "inner_joins",
+        "inner_joins",
     ],
     "exercise_name": [
         "beverages_and_food",
         "sizes_and_trademarks",
         "hours_quarters",
+        "salaries_seniorities",
         "wages",
-        "orders",            # ← Virgule ajoutée
+        "orders",
         "sales",
         "weights_turnover_retail",
         "product_client_order1",
         "product_client_order2",
-        "product_client_order3"
+        "product_client_order3",
+        "seniorities_salaries_inner",
     ],
     "tables": [
         ["beverages", "food_items"],
         ["sizes", "trademarks"],
-        ["hours", "quarters"],           # ← Vérifiez : est-ce bien pour "hours_quarters" ?
-        ["wages"],                       # ← Vérifiez : est-ce bien pour "wages" ?
-        ["orders"],                      # ← Vérifiez : est-ce bien pour "orders" ?
+        ["hours", "quarters"],
+        ["salaries", "seniorities"],
+        ["wages"],
+        ["orders"],
         ["sales"],
         ["weights_turnover_retail"],
         ["df_products", "df_customers", "df_orders"],
         ["df_products", "df_customers", "df_orders"],
-        ["df_products", "df_customers", "df_orders"]
+        ["df_products", "df_customers", "df_orders"],
+        ["salaries", "seniorities"],
     ],
     "last_reviews": [
         "01/09/2025",
         "02/09/2025",
         "03/09/2025",
+        "07/10/2025",
         "04/09/2025",
         "22/09/2025",
         "23/09/2025",
         "24/09/2025",
         "25/09/2025",
         "26/09/2025",
-        "28/09/2025"
+        "28/09/2025",
+        "11/10/2025",
     ],
 }
 memory_state_df = pd.DataFrame(data)
 import pandas as pd
-
-df = pd.DataFrame(data)
-print(df[["theme", "exercise_name", "tables"]])
 
 con.execute("CREATE TABLE IF NOT EXISTS memory_state AS SELECT * FROM memory_state_df")
 # CROSS JOIN EXERCICES
@@ -212,7 +217,6 @@ employee_id,seniority
 1,2ans
 2,4ans
 '''
-
 
 salaries = pd.read_csv(io.StringIO(csv))
 seniorities = pd.read_csv(io.StringIO(csv2))
