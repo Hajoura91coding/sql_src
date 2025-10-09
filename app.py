@@ -82,6 +82,8 @@ def parse_exercise_from_md(filepath: str) -> list:
         return []
 
     return exercises  # Retourner la liste complète
+
+
 def check_users_solution(query_users: str) -> None:
     """
     Checks that user SQL is correct by:
@@ -97,11 +99,11 @@ def check_users_solution(query_users: str) -> None:
         st.error("Solution non disponible")
         return
 
-    try:
-        result = result[solution_df.columns]
-        st.dataframe(result.compare(solution_df))
-    except KeyError as e:
-        st.write("Some columns are missing")
+    if result.equals(solution_df):
+        st.balloons()
+        st.success("🎉 PARFAIT ! Votre solution est 100% correcte !")
+    else:
+        st.warning("⚠️ Pas tout à fait... Vérifiez votre requête")
 
     n_lines_difference = result.shape[0] - solution_df.shape[0]
     if n_lines_difference != 0:
@@ -211,7 +213,7 @@ with st.sidebar:
                         st.code(answer, "sql")
                         solution_df = con.execute(answer).df()
                         st.dataframe(solution_df)
-                        st.session_state.solution_df = con.execute(answer).df()
+                        st.session_state.solution_df = solution_df #a vérifier
             else:
                 st.warning(f"Exercice {selected_exercise_name} non trouvé dans la DB")
         else:
@@ -248,6 +250,7 @@ if current_theme and 'selected_exercise_name' in st.session_state:
         if submitted and query:
             st.write(f"Valeur de query: {query}")
             check_users_solution(query)
+
 
     # Boutons de révision
     st.subheader("Programmer la prochaine révision:")
