@@ -50,9 +50,9 @@ data = {
         ["orders"],
         ["sales"],
         ["weights_turnover_retail"],
-        ["df_products", "df_customers", "df_orders"],
-        ["df_products", "df_customers", "df_orders"],
-        ["df_products", "df_customers", "df_orders"],
+        ["df_orders","df_order_details"],
+        ["df_customers","order_details"],
+        ["df_customers","order_details"],
         ["salaries", "seniorities"],
     ],
     "last_reviews": [
@@ -262,6 +262,14 @@ order_details_data = {
 
 df_order_details = pd.DataFrame(order_details_data)
 con.execute("CREATE TABLE IF NOT EXISTS df_order_details AS SELECT * FROM df_order_details")
+
+detailed_order = pd.merge(
+    df_orders,
+    df_order_details,
+    on='order_id',
+    how='inner'
+)
+con.execute("CREATE TABLE IF NOT EXISTS order_details AS SELECT * FROM detailed_order")
 
 weights_turnover_retail = pd.read_csv("data/weights_turnover_retail.csv")
 con.execute("CREATE TABLE IF NOT EXISTS weights_turnover_retail AS SELECT * FROM weights_turnover_retail")
