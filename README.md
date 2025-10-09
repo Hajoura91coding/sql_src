@@ -60,6 +60,10 @@ La répétition espacée est une technique d'apprentissage qui consiste à se fa
 
 ## ▶️ Lancer l'application
 
+**[→ Try the live demo](https://sqlsrc-2oh23ouddvg6acqedw3ey6.streamlit.app/)**
+
+ou bien localement :
+
 ```bash
 streamlit run app.py
 ```
