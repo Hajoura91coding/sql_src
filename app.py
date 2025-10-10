@@ -141,7 +141,7 @@ with st.sidebar:
 
     # Selectbox avec callback
     theme = st.selectbox(
-        "What would you like to review?",
+        "Choisissez un thème",
         theme_options,
         key='theme_selector',
         on_change=on_theme_change,
@@ -152,7 +152,7 @@ with st.sidebar:
     current_theme = st.session_state.selected_theme if st.session_state.selected_theme != "" else None
 
     if current_theme:
-        st.write("You selected:", current_theme)
+        st.write("Vous avez selectioné:", current_theme)
 
         #  Parser une fois et stocker dans session_state
         if 'available_exercises' not in st.session_state or st.session_state.get('current_theme') != current_theme:
