@@ -33,10 +33,11 @@ As a developer learning SQL, I needed a **better way to practice and retain know
 ## Screenshots
 
 ### Main Interface
-![Main App](screenshots/![img.png](img.png))
+<img width="2326" height="1188" alt="Capture d'écran 2025-10-10 105529" src="https://github.com/user-attachments/assets/dd2f971b-c411-42e2-b0dd-722dd30a9a8d" />
+
 
 ### Exercise View
-![Exercise](screenshots/exercise.png)
+<img width="2304" height="1187" alt="Capture d'écran 2025-10-10 105724" src="https://github.com/user-attachments/assets/6c1d8ff8-6979-4ab3-9eb2-8972fccbb440" />
 
 ---
 
@@ -73,4 +74,5 @@ pip install -r requirements.txt
 python init_db.py
 
 # Run the app
+
 streamlit run app.py
