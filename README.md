@@ -76,8 +76,9 @@ python init_db.py
 # Run the app
 
 streamlit run app.py
-
+```
 ---
+
 
 ## 📝 License
 
@@ -108,4 +109,5 @@ AI Trainer
 If this project helped you learn SQL or gave you ideas, please **give it a star** ⭐
 
 [![GitHub stars](https://img.shields.io/github/stars/Hajoura91coding/sql-learning-platform.svg?style=social&label=Star)](https://github.com/Hajoura91coding/sql-learning-platform)
+
 
