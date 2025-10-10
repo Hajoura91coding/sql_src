@@ -76,3 +76,36 @@ python init_db.py
 # Run the app
 
 streamlit run app.py
+
+---
+
+## 📝 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+### What does this mean?
+
+✅ You can use this project for **personal or commercial** purposes  
+✅ You can **modify** and **distribute** it  
+✅ You just need to include the original license  
+
+---
+
+## 👤 Author
+
+**Agar Blohorn**  
+Freelance Data Scientist  
+AI Trainer
+
+- 🔗 GitHub: [@Hajoura91coding](https://github.com/Hajoura91coding)
+- 📧 Email: hajer.blohorn@gmail.com
+- 🌍 Location: Gif sur Yvette, France
+
+---
+
+## ⭐ Show your support
+
+If this project helped you learn SQL or gave you ideas, please **give it a star** ⭐
+
+[![GitHub stars](https://img.shields.io/github/stars/Hajoura91coding/sql-learning-platform.svg?style=social&label=Star)](https://github.com/Hajoura91coding/sql-learning-platform)
+
