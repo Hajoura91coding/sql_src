@@ -2,7 +2,7 @@
 
 **Master SQL through interactive exercises and spaced repetition**
 
-[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Visit-brightgreen?style=for-the-badge)]([https://sql-learning-platform.streamlit.app/](https://sql-learning-platform.streamlit.app/))
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Visit-brightgreen?style=for-the-badge)]([https://sql-learning-platform.streamlit.app/]([[https://sql-learning-platform.streamlit.app/](https://sql-learning-platform-utcrdzgn2jgiscj3kvvogy.streamlit.app/)](https://sql-learning-platform-utcrdzgn2jgiscj3kvvogy.streamlit.app/)))
 [![Python](https://img.shields.io/badge/Python-3.9+-blue?style=for-the-badge&logo=python)](https://www.python.org/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red?style=for-the-badge&logo=streamlit)](https://streamlit.io/)
 [![Stars](https://img.shields.io/github/stars/VotreUsername/sql-learning-platform?style=for-the-badge)](https://github.com/VotreUsername/sql-learning-platform/stargazers)
@@ -43,7 +43,7 @@ As a developer learning SQL, I needed a **better way to practice and retain know
 
 ## Try it now!
 
-**[Launch Live Demo](https://votre-app.streamlit.app/)**
+**[Launch Live Demo]([https://votre-app.streamlit.app/](https://sql-learning-platform-utcrdzgn2jgiscj3kvvogy.streamlit.app/))**
 
 No installation needed - just click and start learning!
 
@@ -109,6 +109,7 @@ AI Trainer
 If this project helped you learn SQL or gave you ideas, please **give it a star** ⭐
 
 [![GitHub stars](https://img.shields.io/github/stars/Hajoura91coding/sql-learning-platform.svg?style=social&label=Star)](https://github.com/Hajoura91coding/sql-learning-platform)
+
 
 
 
