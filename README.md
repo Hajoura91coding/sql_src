@@ -1,80 +1,76 @@
+# 🎓 SQL Learning Platform
+
+**Master SQL through interactive exercises and spaced repetition**
+
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Visit-brightgreen?style=for-the-badge)](https://votre-app.streamlit.app/)
+[![Python](https://img.shields.io/badge/Python-3.9+-blue?style=for-the-badge&logo=python)](https://www.python.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red?style=for-the-badge&logo=streamlit)](https://streamlit.io/)
+[![Stars](https://img.shields.io/github/stars/VotreUsername/sql-learning-platform?style=for-the-badge)](https://github.com/VotreUsername/sql-learning-platform/stargazers)
 
 ---
 
-# 📘 SQL Learning Platform
+### Why this project?
 
-Une application **Streamlit** pour pratiquer et réviser le SQL de manière interactive, avec correction automatique et gestion des révisions espacées.
+As a developer learning SQL, I needed a **better way to practice and retain knowledge**. This platform uses **spaced repetition** (proven learning technique) to help you master SQL concepts efficiently.
 
-Mais qu'est-ce que la répétition espacée ?
+ **Perfect for:**
+- Developers preparing for interviews
+- Students learning SQL
+- Anyone wanting to level up their database skills
 
-La répétition espacée est une technique d'apprentissage qui consiste à se faire interroger (ou s'auto-interroger) d'autant moins souvent qu'on maîtrise la question. 
+---
 
-## 🚀 Fonctionnalités
+## Features
 
-* Interface simple et intuitive avec **Streamlit**.
-* Exercices organisés par **thèmes** (choix dans la sidebar).
-* Affichage des tables nécessaires pour chaque exercice.
-* Vérification automatique des solutions de l’utilisateur :
+✅ **Smart Review System** - Exercises come back at optimal intervals  
+✅ **Real-time Validation** - Instant feedback on your queries  
+✅ **Multiple Themes** - JOINS, GROUP BY, CASE WHEN, Window Functions...  
+✅ **Progress Tracking** - See your improvement over time  
+✅ **Admin Panel** - Easily add new exercises  
 
-  * Comparaison des colonnes et des résultats avec la solution attendue.
-  * Signalement des différences de lignes ou colonnes.
-  * Possibilité de demander un indice
-* Système de **révisions planifiées** (2, 7 ou 21 jours) pour renforcer la mémoire.
-* Stockage et gestion des données via **DuckDB**.
+---
 
-## 📂 Structure du projet
+## Screenshots
 
-```
-├── app.py               # Application principale Streamlit
-├── init_db.py           # Script d'initialisation de la base DuckDB
-├── data/                # Base DuckDB et données générées
-├── answers/             # Réponses SQL des exercices
-├── guidelines/          # Consignes associées aux thèmes/exercices
-├── requirements.txt     # Dépendances Python
-```
+### Main Interface
+![Main App](screenshots/![img.png](img.png))
 
-## ⚙️ Installation
+### Exercise View
+![Exercise](screenshots/exercise.png)
 
-1. Cloner le dépôt :
+---
 
-   ```bash
-   git clone https://github.com/ton-compte/sql-learning-platform.git
-   cd sql-learning-platform
-   ```
+## Try it now!
 
-2. Créer et activer un environnement virtuel :
+**[Launch Live Demo](https://votre-app.streamlit.app/)**
 
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate   # Linux/Mac
-   .venv\Scripts\activate      # Windows
-   ```
+No installation needed - just click and start learning!
 
-3. Installer les dépendances :
+---
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+## Tech Stack
 
-4. Initialiser la base DuckDB (automatique au premier lancement).
+| Layer | Technology |
+|-------|-----------|
+| **Frontend** | Streamlit (Python) |
+| **Database** | DuckDB |
+| **Data Processing** | Pandas |
+| **Deployment** | Streamlit Cloud |
+| **AI** | Groq API (planned) |
 
-## ▶️ Lancer l'application
+---
 
-**[→ Try the live demo](https://sql-learning-platform.streamlit.app/)**
-
-ou bien localement :
-
+## Quick Start (Local)
 ```bash
+# Clone the repo
+git clone https://github.com/VotreUsername/sql-learning-platform.git
+cd sql-learning-platform
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Initialize database
+python init_db.py
+
+# Run the app
 streamlit run app.py
-```
-
-Accéder ensuite à [http://localhost:8501](http://localhost:8501).
-
-## 🧑‍💻 Exemple d’utilisation
-
-1. Choisir un **thème** dans la sidebar.
-2. Lire les **consignes** affichées.
-3. Écrire sa requête SQL dans le champ prévu.
-4. Valider et comparer son résultat à la **solution officielle**.
-5. Planifier la prochaine révision (2, 7 ou 21 jours).
-
